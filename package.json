@@ -1,0 +1,15 @@
+{
+  "name": "serverless",
+  "version": "0.1.0",
+  "author": "evm-nft-minter",
+  "license": "MIT",
+  "homepage": "https://github.com/evm-nft-minter/serverless",
+  "bugs": {
+    "url" : "https://github.com/evm-nft-minter/serverless/issues",
+    "email" : "nft-minter@tuta.io"
+  },
+  "devDependencies": {
+    "serverless-offline": "^9.1.6",
+    "serverless-python-requirements": "^5.4.0"
+  }
+}

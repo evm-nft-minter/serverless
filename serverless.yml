@@ -1,0 +1,44 @@
+service: nft-minter
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.7
+  region: eu-west-2
+  stage: prod
+  httpApi:
+    cors: true
+
+useDotenv: true
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    # useDownloadCache: false
+    # useStaticCache: false
+
+functions:
+  voucher:
+    handler: src/voucher/main.main
+    events:
+      - httpApi:
+          method: get
+          path: /voucher/{network}
+    environment:
+      VOUCHER_SIGNER_PRIVATE_KEY: ${env:VOUCHER_SIGNER_PRIVATE_KEY}
+      MAKER_FEE_USD: ${env:MAKER_FEE_USD}
+
+  upload:
+    handler: src/upload/main.main
+    events:
+      - httpApi:
+          method: post
+          path: /upload/{network}
+    environment:
+      UPLOAD_FEE_RECEIVER: ${env:UPLOAD_FEE_RECEIVER}
+      ARWEAVE_JWK_KEY: ${env:ARWEAVE_JWK_KEY}
+
+plugins:
+  - serverless-python-requirements
+  - serverless-offline

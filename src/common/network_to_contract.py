@@ -1,0 +1,8 @@
+from src.common.network_enum import NetworkEnum
+
+ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
+
+NETWORK_TO_CONTRACT = {
+    NetworkEnum.ETHEREUM: ZERO_ADDRESS,
+    NetworkEnum.POLYGON: ZERO_ADDRESS,
+}
